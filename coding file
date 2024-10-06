@@ -1,0 +1,126 @@
+ #path
+getwd)
+#importing datas
+library(readx])
+stats_as ‹- nead_excel("C:/Users/Welcome To Computer/Downloads/stats. data_chosen ‹- stats_as|, c("house_quality", "year _built", "year_remod"
+_as.xlsx")
+"sale_price")]
+"floor1_sf"
+"neighbourhood", "full_bath", "configuration", "slope", "lot _area"
+# Removing rows whose values are missing
+data_chosen ‹- na.omit(data_chosen)
+# Assuming 'data_chosen' is your dataset
+data_chosen ‹- na. omit(data_chosen)
+# confirming Outliers (by box plot for 'sale_price'
+boxplot(data_chosen$sale_price)
+# we can also identify and remove outliers based on the box plot
+outliers ‹- boxplot(data_chosen$sale_price, plot - FALSE) $out data_chosen ‹- data_chosen[|data_chosen$sale_price %in% outliers, ]
+# Changing Data Types (assuming
+"neigh…
+# cleaned data
+summary(data_chosen)
+# visualizations
+install-packages ("ggplot2")
+library(ggplot2)
+# Visualization 1: Scatter Plot - Total no of rooms vs. Sale Price
+ggplot (stats
+_as, aes(x = rooms_tot, y - sale_price)) +
+geom_point) +
+labs(title = "Scatter Plot: Total no of rooms vs. Sale Price",
+x = "Total no of rooms"
+y - "Sale Price ($)*)
+# Visualization 2: Boxplot - Number of Bedrooms V5. Sale Price
+ggplot(stats_as, aes(x = as. factor (bedroom), y = sale_price, fill= "pink")) +
+geom_boxplot) +
+labs(title = "Boxplot: „Number of Bedrooms vs. Sale Price",
+x = "Number of Bedrooms",
+y - "Sale Price ($)*)
+# Visualization 3: Bar Chart - Quality of the House vs. Average Sale Price
+Egplot(stats_as, aes(x - as. factor(house_quality), y - sale_price)) +
+stat_summ…
+[21:56, 6/10/2024] Sid: # Visualization 4: Bar Chart - stories vs. Average Sale Price
+egplot(stats_as, aes(x - stories, y - sale price)) + stat_summary (fun - mean, geom - "bar", f111 - "skyblue") + labs(title - "Bar Chart: stories vs. Average Sale Price",
+x - "stories"
+y - "Average Sale Price ($)")
+#spliting the data into a training and test dataset
+set. seed (40425082)
+install. packages ("caret")
+library(caret)
+index ‹- createDataPartition(data _chosen$sale price, list = FALSE, p=0.8, times=1)
+train ‹- data_chosen[index,] test ‹- data_chosen [-index, ]
+Model_A ‹- Imsale_price ~ as. factor (house_quality), data = train)
+summary (Model_A)
+#prediction through this model A
+ simple price prediction ‹- predict (Model_A, newdata = test)
+# prediction accurecy
+postResample pred - simple price prediction, obs - test$sale_price)
+#RMSE is the difference between observed and predicted value calculated as: sqrt (mean (simple price prediction - test$sale price) *2))
+ #multiple línear regression (Are these configuration, slope, full bath, neighbourhood, floor sf, year remod, year build and house quality related to sale price))
+#or how well can these factors predict the price
+multiple model ‹- In(sale price ~ house quality + year built + yea remod + floor sf + as. factor (neighbourhood) + full bath + as. factor (configuration) +
+as. factor(slope) + lot area, data = train)
+summary (multiple model)
+#predict prices for the houses in the test set
+multiple price predictions ‹ - predict (multiple model, newdata = test)
+#evaluate accuracy
+postReample (multiple price predictions, test$sale price) sort (mean (multiple price predictions - test$sale price) *2))
+install. packages ("car")
+library (car)
+vif(multiple model)
+plot(multiple model)
+
+install. packages (*Intest")
+library(Intest)
+dutest (multiple nodel)
+cook ‹- cooks.distance (multiple model)
+summary(cook)
+Sun (cook > 1)
+# Assuming 'data' is your dataframe
+rumeric.data <-data chosenl， saply（data chosen， is.nuaeric）
+
+# Calculate correlation matrix for numeric variables
+correlation matrix ‹- cor (numeric_data)
+correlation with_sale_price ‹- correlation matrix['sale price', ]
+# Select variables with high correlation (you can choose a threshold, e.g., 0.5)
+significant_variables ‹- names (correlation with_sale_price[abs (correlation with_sale_price) › 0.5])
+# Remove missing values from the vector
+significant_variables ‹- significant_variables[complete.cases (significant_variables)]
+# Subset the dataframe with selected variables
+data_chosen <- data_
+chosen, C(significant_variables, 'sale_price')]
+summary (data_chosen)
+
+correlation matrix <- cor(data_chosen) print (correlation_matrix['sale_price', l)
+pairs(data_chosen)
+model <- Im(sale_price ~ ., data = data_chosen)
+summary (model)
+model ‹ - lmsale_price ~ ., data = data_chosen) summary (model)
+
+#data formatting
+# Check for missing values
+sum (is. na(data_chosen))
+# Address missing values (impute or remove)
+data_clean ‹- na. omit(data_chosen)
+# Check data types
+str (data_clean)
+# Check for outliers
+boxplot (data_clean)
+any (duplicated (names (data_clean)))
+# Identify duplicate column names
+dup_cols <- names （data_clean） ［duplicated（names （data_clean））］
+# Rename duplicate columns, directly in data_clean
+for (col in dup_cols) f
+# Identify indices of duplicate columns
+dup indices ‹ - which(names(data_clean) == col)
+# Append index to duplicate column names to make them unique
+for (1 in seq_along (dup indices)) f
+names (data_clean) [dup_indices[i]] ‹- paste(col, "_duplicate", i)
+   }
+}
+# Retry the esplot code
+agplot(data clean, aes(x house quality, y - sale_price)) +
+geom point +
+labs(title - "Relationship between House Quality and Sale Prices",
+x- "House_Quality".
+y Sale Price")
+summary (data clean)
